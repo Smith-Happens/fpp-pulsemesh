@@ -28,22 +28,22 @@ public:
     }
 
     virtual void SendMediaOpenPacket(const std::string &filename) override {
-        std::string message = "SendMediaOpenPacket/" + mediaFilename;
+        std::string message = "SendMediaOpenPacket/" + filename;
         writeToSocket(message);
     }
 
     virtual void SendMediaSyncStartPacket(const std::string &filename) override {
-        std::string message = "SendMediaSyncStartPacket/" + mediaFilename;
+        std::string message = "SendMediaSyncStartPacket/" + filename;
         writeToSocket(message);
     }
 
     virtual void SendMediaSyncStopPacket(const std::string &filename) override {
-        std::string message = "SendMediaSyncStopPacket/" + mediaFilename;
+        std::string message = "SendMediaSyncStopPacket/" + filename;
         writeToSocket(message);
     }
 
     virtual void SendMediaSyncPacket(const std::string &filename, float seconds) override {
-        std::string message = "SendMediaSyncPacket/" + mediaFilename + "/" + mediaType + "/" + std::to_string(seconds);
+        std::string message = "SendMediaSyncPacket/" + filename + "/" + std::to_string(seconds);
         writeToSocket(message);
     }
 
