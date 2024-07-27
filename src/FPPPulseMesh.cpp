@@ -60,7 +60,7 @@ private:
 
         memset(&addr, 0, sizeof(addr));
         addr.sun_family = AF_UNIX;
-        strcpy(addr.sun_path, "/tmp/fpp_pulse_mesh_socket");
+        strcpy(addr.sun_path, "/var/run/PULSE");
 
         if (connect(sockfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
             std::cerr << "Socket connect error: " << strerror(errno) << std::endl;
