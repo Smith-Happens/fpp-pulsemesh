@@ -64,6 +64,8 @@ private:
         addr.sun_family = AF_UNIX;
         strcpy(addr.sun_path, "/var/run/fppd/PULSE");
 
+        LogInfo(VB_PLUGIN, "Init socket is complete\n");
+
         // unlink(addr.sun_path);
         // if (bind(sockfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
         //     std::cerr << "Socket bind error: " << strerror(errno) << std::endl;
@@ -73,6 +75,8 @@ private:
     }
 
     void closeSocket() {
+                LogInfo(VB_PLUGIN, "Closing socket\n");
+
         if (sockfd >= 0) {
             close(sockfd);
         }
@@ -84,6 +88,9 @@ private:
             LogInfo(VB_PLUGIN, "Socket not connected\n");
             return;
         }
+                LogInfo(VB_PLUGIN, "Writing to socket\n");
+                LogInfo(VB_PLUGIN, message);
+
 
         // if (send(sockfd, message.c_str(), message.size(), 0) < 0) {
         //     std::cerr << "Socket send error: " << strerror(errno) << std::endl;
