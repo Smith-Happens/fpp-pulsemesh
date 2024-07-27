@@ -19,7 +19,7 @@ class FPPPulseMeshPlugin : public FPPPlugin, public MultiSyncPlugin {
     
 public:
     FPPPulseMeshPlugin() : FPPPlugin("fpp-PulseMesh") {
-        LogInfo(VB_PLUGIN, "Initializing PulseMesh Plugin\n");
+        LogInfo(VB_PLUGIN, "Initializing PulseMesh Connector Plugin\n");
         initSocket();
     }
     virtual ~FPPPulseMeshPlugin() {
