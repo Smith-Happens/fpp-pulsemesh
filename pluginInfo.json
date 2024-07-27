@@ -1,0 +1,19 @@
+{
+	"repoName": "fpp-pulsemesh",
+	"name": "PulseMesh Connector",
+	"author": "PulseMesh Labs",
+	"description": "Connector to PulesMesh",
+	"homeURL": "https://github.com/PulseMeshLabs/fpp-pulsemesh",
+	"srcURL": "https://github.com/PulseMeshLabs/fpp-pulsemesh.git",
+	"bugURL": "https://github.com/PulseMeshLabs/fpp-pulsemesh/issues",
+	"versions": [
+        {
+            "minFPPVersion": "7.0",
+            "maxFPPVersion": "0",
+            "branch": "master",
+            "sha": "",
+            "allowUpdates": 1
+        }
+	]
+}
+
