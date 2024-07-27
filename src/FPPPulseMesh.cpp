@@ -55,6 +55,8 @@ private:
         sockfd = socket(AF_UNIX, SOCK_DGRAM, 0);
         if (sockfd < 0) {
             std::cerr << "Socket creation error: " << strerror(errno) << std::endl;
+            LogInfo(VB_PLUGIN, "Socket creation error:\n");
+            LogInfo(VB_PLUGIN, strerror(errno));
             return;
         }
 
@@ -79,14 +81,17 @@ private:
     void writeToSocket(const std::string &message) {
         if (sockfd < 0) {
             std::cerr << "Socket not connected" << std::endl;
+            LogInfo(VB_PLUGIN, "Socket not connected\n");
             return;
         }
 
-        if (send(sockfd, message.c_str(), message.size(), 0) < 0) {
-            std::cerr << "Socket send error: " << strerror(errno) << std::endl;
-        }
+        // if (send(sockfd, message.c_str(), message.size(), 0) < 0) {
+        //     std::cerr << "Socket send error: " << strerror(errno) << std::endl;
+        // }
         if (sendto(sockfd, message.c_str(), message.size(), 0, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
             std::cerr << "Socket send error: " << strerror(errno) << std::endl;
+            LogInfo(VB_PLUGIN, "Socket set error\n");
+            LogInfo(VB_PLUGIN, strerror(errno));
         }
     }
 };
