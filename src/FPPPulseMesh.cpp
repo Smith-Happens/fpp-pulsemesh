@@ -62,12 +62,12 @@ private:
         addr.sun_family = AF_UNIX;
         strcpy(addr.sun_path, "/var/run/fppd/PULSE");
 
-        unlink(addr.sun_path);
-        if (bind(sockfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-            std::cerr << "Socket bind error: " << strerror(errno) << std::endl;
-            close(sockfd);
-            sockfd = -1;
-        }
+        // unlink(addr.sun_path);
+        // if (bind(sockfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        //     std::cerr << "Socket bind error: " << strerror(errno) << std::endl;
+        //     close(sockfd);
+        //     sockfd = -1;
+        // }
     }
 
     void closeSocket() {
