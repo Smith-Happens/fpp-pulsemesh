@@ -13,6 +13,8 @@
 
 #include "Plugin.h"
 #include "MultiSync.h"
+#include "Plugin.h"
+#include "Plugins.h"
 
 
 class FPPPulseMeshPlugin : public FPPPlugin, public MultiSyncPlugin {
@@ -20,6 +22,7 @@ class FPPPulseMeshPlugin : public FPPPlugin, public MultiSyncPlugin {
 public:
     FPPPulseMeshPlugin() : FPPPlugin("fpp-PulseMesh") {
         LogInfo(VB_PLUGIN, "Initializing PulseMesh Connector Plugin\n");
+        multiSync->addMultiSyncPlugin(this);
         initSocket();
     }
     virtual ~FPPPulseMeshPlugin() {
