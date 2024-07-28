@@ -13,16 +13,22 @@
 
 #include "Plugin.h"
 #include "MultiSync.h"
-#include "Plugin.h"
-#include "Plugins.h"
+//#include "Plugins.h"
+#include "Warnings.h"
 
 
 class FPPPulseMeshPlugin : public FPPPlugin, public MultiSyncPlugin {
     
 public:
-    FPPPulseMeshPlugin() : FPPPlugin("fpp-PulseMesh") {
+    FPPPulseMeshPlugin() : FPPPlugin("fpp-PulseMesh"), m_lastMediaHalfSecond(0) {
         LogInfo(VB_PLUGIN, "Initializing PulseMesh Connector Plugin\n");
-        multiSync->addMultiSyncPlugin(this);
+
+        MultiSync::INSTANCE.addMultiSyncPlugin(this);
+
+        if (!MultiSync::INSTANCE.isMultiSyncEnabled()) {
+            WarningHolder::AddWarning("PulseMesh Connector Plugin enabled, but MultiSync is not enabled.  Please enable MultiSync to use PulseMesh Connector.");
+        }
+
         initSocket();
     }
     virtual ~FPPPulseMeshPlugin() {
@@ -46,6 +52,11 @@ public:
     }
 
     virtual void SendMediaSyncPacket(const std::string &filename, float seconds) override {
+        int curTS = (seconds * 2.0f);
+        if (m_lastMediaHalfSecond == curTS) {
+            return;
+        }
+        m_lastMediaHalfSecond = curTS;
         std::string message = "SendMediaSyncPacket/" + filename + "/" + std::to_string(seconds);
         writeToSocket(message);
     }
@@ -53,33 +64,21 @@ public:
 private:
     int sockfd;
     struct sockaddr_un addr;
+    int m_lastMediaHalfSecond;
 
     void initSocket() {
         sockfd = socket(AF_UNIX, SOCK_DGRAM, 0);
         if (sockfd < 0) {
-            std::cerr << "Socket creation error: " << strerror(errno) << std::endl;
-            LogInfo(VB_PLUGIN, "Socket creation error:\n");
-            LogInfo(VB_PLUGIN, strerror(errno));
+            LogErr(VB_PLUGIN, "Socket creation error: %s\n", strerror(errno));
             return;
         }
 
         memset(&addr, 0, sizeof(addr));
         addr.sun_family = AF_UNIX;
-        strcpy(addr.sun_path, "/var/run/fppd/PULSE");
-
-        LogInfo(VB_PLUGIN, "Init socket is complete\n");
-
-        // unlink(addr.sun_path);
-        // if (bind(sockfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-        //     std::cerr << "Socket bind error: " << strerror(errno) << std::endl;
-        //     close(sockfd);
-        //     sockfd = -1;
-        // }
+        strcpy(addr.sun_path, "/tmp/PULSE");
     }
 
     void closeSocket() {
-                LogInfo(VB_PLUGIN, "Closing socket\n");
-
         if (sockfd >= 0) {
             close(sockfd);
         }
@@ -87,21 +86,12 @@ private:
 
     void writeToSocket(const std::string &message) {
         if (sockfd < 0) {
-            std::cerr << "Socket not connected" << std::endl;
-            LogInfo(VB_PLUGIN, "Socket not connected\n");
+            LogErr(VB_PLUGIN, "Socket not connected\n");
             return;
         }
-                LogInfo(VB_PLUGIN, "Writing to socket\n");
-                LogInfo(VB_PLUGIN, message);
 
-
-        // if (send(sockfd, message.c_str(), message.size(), 0) < 0) {
-        //     std::cerr << "Socket send error: " << strerror(errno) << std::endl;
-        // }
         if (sendto(sockfd, message.c_str(), message.size(), 0, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-            std::cerr << "Socket send error: " << strerror(errno) << std::endl;
-            LogInfo(VB_PLUGIN, "Socket set error\n");
-            LogInfo(VB_PLUGIN, strerror(errno));
+            LogErr(VB_PLUGIN, "Socket send error: %s\n", strerror(errno));
         }
     }
 };
