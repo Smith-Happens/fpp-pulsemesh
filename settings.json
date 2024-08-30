@@ -11,12 +11,12 @@
         "Token": {
             "name": "Token",
             "description": "Token",
-            "tip": "Token from connector page",
+            "tip": "Token from Connectors page at pulsemesh.io",
             "restart": 1,
             "reboot": 0,
             "type": "text",
             "default": "",
-            "size": 300,
+            "size": 30,
             "maxlength": 300
         }
     }
