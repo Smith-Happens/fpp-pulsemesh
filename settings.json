@@ -12,7 +12,7 @@
             "name": "Token",
             "description": "Token",
             "tip": "Token from Connectors page at pulsemesh.io",
-            "restart": 1,
+            "restart": 0,
             "reboot": 0,
             "type": "text",
             "default": "",
