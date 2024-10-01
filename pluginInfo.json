@@ -8,12 +8,12 @@
   "bugURL": "https://github.com/PulseMeshLabs/fpp-pulsemesh/issues",
   "versions": [
     {
-      "minFPPVersion": "7.0",
-      "maxFPPVersion": "7.99",
-      "branch": "main",
-      "sha": "",
-      "allowUpdates": 1
-    },
+		"minFPPVersion": "5.0",
+		"maxFPPVersion": "7.99",
+		"branch": "main",
+		"sha": "",
+		"allowUpdates": 1
+	},
     {
       "minFPPVersion": "8.0",
       "maxFPPVersion": "0",

@@ -12,6 +12,7 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf] https://repo.pulsemesh.io stable 
 sudo apt update -o Dir::Etc::sourcelist="/etc/apt/sources.list.d/pulsemsh.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
 sudo apt install -y pulsemesh-connector
 sudo systemctl enable pulsemesh-connector.service
+sudo systemctl start pulsemesh-connector.service
 
 . ${FPPDIR}/scripts/common
 setSetting restartFlag 1
