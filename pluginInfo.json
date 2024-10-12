@@ -9,11 +9,18 @@
   "versions": [
     {
       "minFPPVersion": "6.0",
+      "maxFPPVersion": "6.99",
+      "branch": "fpp_v6",
+      "sha": "",
+      "allowUpdates": 1
+    },
+    {
+      "minFPPVersion": "7.0",
       "maxFPPVersion": "7.99",
       "branch": "main",
       "sha": "",
       "allowUpdates": 1
-	  },
+    },
     {
       "minFPPVersion": "8.0",
       "maxFPPVersion": "0",
