@@ -44,6 +44,7 @@ public:
         }
 
         increaseStreamLoadingTime();
+        decreaseStreamLoadingTime();
     }
 
     virtual ~FPPPulseMeshPlugin()
@@ -170,6 +171,13 @@ private:
     {
         // Logic to increase the loading time of the stream
         LogInfo(VB_PLUGIN, "Increasing stream loading time\n");
+        // Add your logic here
+    }
+
+    void decreaseStreamLoadingTime()
+    {
+        // Logic to decrease the loading time of the stream
+        LogInfo(VB_PLUGIN, "Decreasing stream loading time\n");
         // Add your logic here
     }
 };

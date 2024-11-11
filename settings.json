@@ -22,8 +22,8 @@
         },
         "StreamLoadingTime": {
             "name": "Stream Loading Time",
-            "description": "Time to increase the loading time of the stream",
-            "tip": "Specify the time in seconds to increase the loading time of the stream",
+            "description": "Time to decrease the loading time of the stream",
+            "tip": "Specify the time in seconds to decrease the loading time of the stream",
             "restart": 0,
             "reboot": 0,
             "type": "number",
