@@ -17,6 +17,12 @@ $menuEntries = Array(
 		'type' => 'content',
 		'page' => 'content.php',
 		'wrap' => 1
+	),
+	Array(
+		'text' => 'Stream Loading Time Configuration',
+		'type' => 'content',
+		'page' => 'stream_loading_time.php',
+		'wrap' => 1
 	)
 );
 

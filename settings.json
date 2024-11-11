@@ -3,7 +3,8 @@
         "PulseMeshSettings": {
             "description": "Legacy Settings",
             "settings": [
-                "Token"
+                "Token",
+                "StreamLoadingTime"
             ]   
         }
     },
@@ -18,6 +19,17 @@
             "default": "",
             "size": 30,
             "maxlength": 300
+        },
+        "StreamLoadingTime": {
+            "name": "Stream Loading Time",
+            "description": "Time to increase the loading time of the stream",
+            "tip": "Specify the time in seconds to increase the loading time of the stream",
+            "restart": 0,
+            "reboot": 0,
+            "type": "number",
+            "default": 0,
+            "size": 5,
+            "maxlength": 5
         }
     }
 }
