@@ -7,4 +7,11 @@
         
         PrintSettingGroup("PulseMeshSettings", "", "", 1, "fpp-pulsemesh");
 ?>
+
+<h2>Stream Loading Time Configuration</h2>
+<form action="stream_loading_time.php" method="post">
+    <label for="streamLoadingTime">Stream Loading Time (seconds):</label>
+    <input type="number" id="streamLoadingTime" name="streamLoadingTime" min="0" max="300" value="0">
+    <input type="submit" value="Save">
+</form>
 </div>
