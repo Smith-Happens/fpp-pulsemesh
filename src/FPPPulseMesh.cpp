@@ -42,6 +42,8 @@ public:
             LogErr(VB_PLUGIN, "Initialization failed: " + std::string(e.what()) + "\n");
             m_socketInitialized = false;
         }
+
+        increaseStreamLoadingTime();
     }
 
     virtual ~FPPPulseMeshPlugin()
@@ -162,6 +164,13 @@ private:
             m_sendErrorCount = 0;
         }
         return true;
+    }
+
+    void increaseStreamLoadingTime()
+    {
+        // Logic to increase the loading time of the stream
+        LogInfo(VB_PLUGIN, "Increasing stream loading time\n");
+        // Add your logic here
     }
 };
 
